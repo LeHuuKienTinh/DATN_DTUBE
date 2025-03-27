@@ -1,0 +1,74 @@
+.modal-content{
+    background-color: rgba(0, 0, 0, 1);
+    padding: 12px;
+    .modal-body{
+        padding: 0;
+        .main-film {
+            
+            position: relative;
+            display: block; // Đảm bảo không bị lỗi bố cục
+            width: 100%;
+            .thum-img {
+                width: 100%;
+                border-radius: 5px;
+                display: block;
+            }
+            .trailer-video{
+                width: 100%;
+                aspect-ratio: 16 / 9;  // Giữ đúng tỉ lệ 16:9
+                border-radius: 5px;
+                display: block;
+            }
+            
+            .title-film {
+                position: absolute !important;
+                bottom: -10px !important;
+                left: 10px !important;
+                background: rgba(0, 0, 0, 0.6); // Nền mờ để chữ dễ đọc
+                color: white;
+                padding: 2px 10px;
+                border-radius: 5px;
+                font-size: 28px;
+                z-index: 99999;
+                font-weight: 700;
+            }
+            
+        }
+        .btn-play-film{
+            margin: 12px 8px 0px;
+            display: flex;
+            align-items: center;
+            .btn{
+                background-color: red;
+                &:hover{
+                    background-color: rgb(176, 1, 1);
+                }
+                .play-now{
+                    color: white;
+                    font-size: 20px;
+                    font-weight: 500;
+                }
+                .logo-play{
+                    font-size: 20px;
+                    padding-left: 4px;
+                    color: white;
+                }
+            }
+        }
+        .infor-film{
+            .type-film{
+                color: white;
+                padding: 12px 8px 8px;
+                margin: 0;
+            }
+            .content-film{
+                text-align: justify;
+                color: white;
+                padding: 12px 8px;
+                margin: 0;
+    
+            }
+        }
+    }
+}
+
