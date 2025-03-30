@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ModelFilm from "./ModelFilm"; // Import modal
+import ModelFilm from "../ModelFilm/ModelFilm"; // Import modal
 
 import "./CardFilm.scss";
 
@@ -31,7 +31,7 @@ const CardFilm = () => {
     const handleShow = async (slug) => {
         try {
             const res = await axios.get(`http://localhost:5000/api/movies/${slug}`);
-            setSelectedMovie(res.data.movie);
+            setSelectedMovie(res.data);
             setShow(true);
         } catch (error) {
             console.error("Lỗi khi lấy chi tiết phim:", error);

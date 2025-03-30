@@ -1,6 +1,6 @@
 import { Container, Navbar } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
-import FooterHomePage from "../HomePage/FooterHomePage";
+import FooterHomePage from "../HomePage/FooterHomePage/FooterHomePage.js";
 
 const BothAuth = () => {
     return (

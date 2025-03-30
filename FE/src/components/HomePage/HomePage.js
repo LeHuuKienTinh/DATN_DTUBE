@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 import "./HomePage.scss";
-import CardFilm from "./CardFilm";
-import ReasonInvite from "./ReasonInvite";
-import FAQ from "./FAQ";
-import FooterHomePage from "./FooterHomePage";
+import CardFilm from "../HomePage/CardFilm/CardFilm.js";
+import ReasonInvite from "./ReasonInvite/ReasonInvite.js";
+import FAQ from "../HomePage/FAQ/FAQ.js";
+import FooterHomePage from "../HomePage/FooterHomePage/FooterHomePage.js";
 import { NavLink } from 'react-router-dom';
 
 const HomePage = () => {

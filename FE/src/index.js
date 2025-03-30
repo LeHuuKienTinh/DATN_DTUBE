@@ -10,6 +10,9 @@ import HomePage from './components/HomePage/HomePage';
 import Register from './components/Auth/Register/Register';
 import BothAuth from './components/Auth/BothAuth';
 import UserHome from './components/UserHome/UserHome';
+import WatchFilm from './components/HomePage/WatchFilm/WatchFilm';
+import MainContent from './components/UserHome/MainContent/MainContent';
+import CategoryFilm from './components/UserHome/CategoryFilm/CategoryFilm';
 // import { jwtDecode } from 'jwt-decode';
 
 // Hàm kiểm tra xem người dùng đã đăng nhập hay chưa
@@ -32,31 +35,33 @@ import UserHome from './components/UserHome/UserHome';
 //     return false; // Token không hợp lệ
 //   }
 // };
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    {/* <React.StrictMode> */}
     <BrowserRouter>
       <Routes>
         {/* Route cho trang chủ, tất cả người dùng đều có thể truy cập */}
         <Route path="/" element={<HomePage />} />
-
         {/* Route cho trang đăng nhập và đăng ký */}
         <Route element={<BothAuth />}>
           <Route index path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
-
-        {/* Route bảo vệ cho trang UserHome */}
-        <Route
-          path="/userhome" element={<UserHome />} />
-        {/* element={isAuthenticated() ? <UserHome /> : <Login />} // Chỉ cho phép truy cập nếu đã đăng nhập */}
-
+        <Route path="watch/:movieSlug/:episodeIndex" element={<WatchFilm />} />
       </Routes>
+      {/* Route bảo vệ cho trang UserHome */}
+      <Routes>
+        {/* Route cha */}
+        <Route path="/userhome" element={<UserHome />}>
+          {/* Route con sẽ được hiển thị trong <Outlet> */}
+          <Route index element={<MainContent />} />
+          <Route path="category/:type" element={<CategoryFilm />} />
+        </Route>
+      </Routes>
+      {/* element={isAuthenticated() ? <UserHome /> : <Login />} // Chỉ cho phép truy cập nếu đã đăng nhập */}
+
     </BrowserRouter>
-    {/* </React.StrictMode> */}
-  </Provider>
+  </Provider >
 );
 
 // If you want to start measuring performance in your app, pass a function

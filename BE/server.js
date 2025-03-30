@@ -30,5 +30,21 @@ app.get('/api/movies/:slug', async (req, res) => {
     }
 });
 
+// API lấy danh sách theo thể loại (phim lẻ, phim bộ)
+app.get('/api/movies/category/:type', async (req, res) => {
+    try {
+        const { type } = req.params; // "phim-le" hoặc "phim-bo"
+        const { page = 1 } = req.query; // Lấy tham số trang, mặc định là 1
+
+        const response = await axios.get(`${BASE_URL}/v1/api/danh-sach/${type}?page=${page}`);
+        console.log("Dữ liệu API trả về:", response.data); // Log dữ liệu để kiểm tra
+
+        res.json(response.data);
+    } catch (error) {
+        console.error("Lỗi khi gọi API:", error.message);
+        res.status(500).json({ error: `Lỗi khi lấy danh sách ${type}` });
+    }
+});
+
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server chạy trên cổng ${PORT}`));

@@ -69,6 +69,68 @@
     
             }
         }
+        .episode-list {
+            padding: 24px;
+            max-width: 600px;
+            margin: auto;
+            background: #000;
+            color: #fff;
+          
+            .title {
+              font-size: 20px;
+              font-weight: bold;
+              margin-bottom: 12px;
+            }
+          
+            .movie-title {
+              font-size: 18px;
+              font-weight: 600;
+              margin-bottom: 16px;
+            }
+          
+            .episodes {
+              .episode {
+                display: flex;
+                align-items: center;
+                padding: 12px;
+                margin-bottom: 8px;
+                border-radius: 8px;
+                text-decoration: none;
+                color: white;
+                background: #222;
+                transition: background 0.3s;
+          
+                &:hover {
+                  background: #444;
+                }
+          
+                &.active {
+                  background: #e50914; // Màu đỏ nổi bật cho tập đầu tiên
+                }
+          
+                .ep-number {
+                  font-size: 20px;
+                  font-weight: bold;
+                  margin-right: 12px;
+                }
+          
+                .ep-info {
+                  flex: 1;
+          
+                  .ep-title {
+                    font-weight: bold;
+                    font-size: 16px;
+                  }
+                }
+          
+                .watch {
+                  font-size: 14px;
+                  color: #aaa;
+                }
+              }
+            }
+          }
+          
     }
 }
 

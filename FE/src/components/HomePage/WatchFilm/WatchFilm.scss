@@ -1,0 +1,59 @@
+.film-background{
+    background-color: rgb(9, 1, 1);
+    .main-film{
+        margin: 72px 40px 0px;
+        padding-top: 16px;
+        .movie-title{
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0px 164px 12px;
+            color: white;
+        }
+        .watch-page{
+            display: flex;
+            justify-content: center;
+            .video-frame{
+                width: 80%;
+                aspect-ratio: 16 / 9;  // Giữ đúng tỉ lệ 16:9
+                border-radius: 5px;
+                display: block;
+            }
+        }
+        .select-ep{
+            color: white;
+            margin: 16px 144px 12px;
+            .list-ep {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                margin-top: 20px;
+                color: white;
+            
+                button {
+                    padding: 8px 12px;
+                    border: none;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    transition: background 0.3s ease;
+            
+                    &.btn-secondary {
+                        background: #ccc;
+                        color: #333;
+            
+                        &:hover {
+                            background: #bbb;
+                        }
+                    }
+            
+                    &.btn-danger {
+                        background: red;
+                        color: white;
+                        font-weight: bold;
+                        border: 1px solid darkred;
+                    }
+                }
+            }
+        }
+    }
+}
+    

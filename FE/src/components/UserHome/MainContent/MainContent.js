@@ -9,8 +9,6 @@ import banner4 from '../../../assets/banner4.webp';
 import banner5 from '../../../assets/banner5.webp';
 import { IoIosArrowForward } from "react-icons/io";
 import { TbMinusVertical } from "react-icons/tb";
-
-
 import banner6 from '../../../assets/banner6.webp';
 import banner7 from '../../../assets/banner7.webp';
 import banner8 from '../../../assets/banner8.webp';

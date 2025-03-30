@@ -2,8 +2,11 @@ import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { FaSearch, FaBell } from "react-icons/fa";
 import "./NavBarUserHome.scss";
+import { useNavigate } from "react-router-dom";
 
 const NavBarUserHome = () => {
+
+    const navigate = useNavigate();
     return (
         <>
             <Navbar expand="lg" className="userhome-navbar">
@@ -12,12 +15,10 @@ const NavBarUserHome = () => {
                         DTube
                     </Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href="1">Trang chủ</Nav.Link>
-                        <Nav.Link href="2">Series</Nav.Link>
-                        <Nav.Link href="3">Phim</Nav.Link>
-                        <Nav.Link href="4">Mới & Phổ biến</Nav.Link>
-                        <Nav.Link href="5">Danh sách của tôi</Nav.Link>
-                        <Nav.Link href="6">Duyệt tìm theo ngôn ngữ</Nav.Link>
+                        <Nav.Link onClick={() => navigate("/")}>Trang chủ</Nav.Link>
+                        <Nav.Link onClick={() => navigate("category/phim-bo")}>Phim bộ</Nav.Link>
+                        <Nav.Link onClick={() => navigate("category/phim-le")}>Phim lẻ</Nav.Link>
+                        <Nav.Link onClick={() => navigate("category/phim-chieu-rap")}>Phim chiếu rạp</Nav.Link>
                     </Nav>
                     <div className="nav-icons">
                         <FaSearch className="icon" />
