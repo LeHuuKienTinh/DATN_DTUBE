@@ -1,0 +1,48 @@
+.movie-list-container {
+    padding: 20px;
+    background-color: #000;
+    color: white;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.movie-list {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+    white-space: nowrap;
+    scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
+}
+
+.movie-list::-webkit-scrollbar {
+    display: none; /* Ẩn thanh cuộn trên Chrome, Edge */
+}
+
+.movie-item {
+    position: relative;
+    flex-shrink: 0;
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.movie-item:hover {
+    transform: scale(1.1);
+}
+
+.movie-poster {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.movie-name {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 14px;
+}
