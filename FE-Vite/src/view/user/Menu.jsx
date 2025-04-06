@@ -1,27 +1,57 @@
-import React from 'react'
-import './Menu.scss'
-import {Link} from'react-router-dom'
+import React, { useState } from 'react';
+import './Menu.scss';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaSearch, FaGift, FaBell, FaUser } from 'react-icons/fa';
+import { useAuth } from '../../contexts/AuthProvider'; 
 const Menu = () => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate();
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+  const { logout, user } = useAuth();
+  const handleLogout  = () => {
+    logout(); // gọi logout từ AuthProvider
+    navigate('/login');
+  };
+
+
   return (
-    <div className='Menu-container-user'> 
-      <div className='left-menu-user menu'><h1>DTube</h1></div>
-      <div className='mid-menu-user menu'>
-        <Link className='label-mid' to='/'>Home</Link>
-        <Link className='label-mid' to='/tvshow'>TV Shows</Link>
-        <Link className='label-mid' to='/movies'>Movies</Link>
-        <Link className='label-mid' to='/new&popular'>New & Popular</Link>
-        <Link className='label-mid' to='/mylist'>My List</Link>
-        <Link className='label-mid' to='/BBL'>Browse by Languages</Link>
+    <div className='menu-container'>
+      <div className='menu-left'>
+        <h1 className='logo'>DTube</h1>
+        <Link to='/' className='menu-link'>Trang chủ</Link>
+        <Link to='/series' className='menu-link'>Series</Link>
+        <Link to='/movies' className='menu-link'>Phim</Link>
+        <Link to='/new' className='menu-link'>Mới & Phổ biến</Link>
+        <Link to='/mylist' className='menu-link'>Danh sách của tôi</Link>
+        <Link to='/languages' className='menu-link'>Duyệt theo ngôn ngữ</Link>
       </div>
-      <div className='right-menu-user menu'>
-        <button><i class="fa fa-search" aria-hidden="true"></i></button>
-        <button>DvD</button>
-        <button><i class="fa fa-gift" aria-hidden="true"></i></button>
-        <button><i class="fa fa-bell" aria-hidden="true"></i></button>
-        <button><i class="fa fa-user" aria-hidden="true"></i></button>
+
+      <div className='menu-right'>
+        <button className='icon-button'><FaSearch /></button>
+        <button className='icon-button'><FaGift /></button>
+        <button className='icon-button'><FaBell /></button>
+
+        <div className='user-dropdown'>
+          <button className='icon-button' onClick={toggleDropdown}>
+            <FaUser />
+          </button>
+          {showDropdown && (
+            <div className='dropdown-menu'>
+              <p className='dropdown-item'><strong>{user.name}</strong></p>
+              <hr />
+              <Link to='/account' className='dropdown-item'>Tài khoản</Link>
+              <Link to='/profile' className='dropdown-item'>Lịch Sử</Link>
+              <Link to='/help' className='dropdown-item'>Trung tâm trợ giúp</Link>
+              <hr />
+              <button onClick={handleLogout} className='dropdown-item logout-btn'>Đăng xuất khỏi Netflix</button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Menu
+export default Menu;

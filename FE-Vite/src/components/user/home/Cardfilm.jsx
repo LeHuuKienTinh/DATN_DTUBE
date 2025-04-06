@@ -58,7 +58,7 @@ const MovieList = () => {
                     <div 
                         key={movie.id} 
                         className="movie-item"
-                        onClick={() => handleMovieClick(movie.name)}
+                        onClick={() => handleMovieClick(movie.slug)}
                         style={{ cursor: 'pointer' }}
                     >
                         <img src={movie.bg} alt={movie.name} className="movie-poster" />

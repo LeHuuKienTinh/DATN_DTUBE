@@ -1,0 +1,129 @@
+/* Trailer.scss */
+
+.trailer-container {
+    background-color: #111;
+    color: #fff;
+    min-height: 100vh;
+  }
+  
+  .banner {
+    background-size: cover;
+    background-position: center;
+    padding: 120px 0 60px;
+    position: relative;
+  
+    .banner-content {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 8px;
+      width: 80%;
+      margin: 0 auto;
+  
+      h1 {
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+  
+      p {
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+  
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #e50914;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    }
+  }
+  
+  .trailer-iframe {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    
+    iframe {
+      width: 80%;
+      height: 450px;
+      border: none;
+    }
+  }
+  
+  .episode-list {
+    width: 80%;
+    margin: 30px auto;
+  
+    h2 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+  
+    .episode-item {
+      display: flex;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 20px;
+  
+      img {
+        width: 180px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 6px;
+      }
+  
+      .episode-info {
+        margin-left: 20px;
+        flex: 1;
+  
+        h3 {
+          font-size: 18px;
+          margin-bottom: 8px;
+        }
+  
+        p {
+          color: #ccc;
+          font-size: 14px;
+          line-height: 1.4;
+        }
+  
+        a {
+          display: inline-block;
+          margin-top: 10px;
+          color: #e50914;
+          text-decoration: none;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  
+  .loading-screen {
+    background-color: #111;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    p {
+      font-size: 18px;
+    }
+  }
+  
+  .not-found-screen {
+    background-color: #111;
+    color: #fff;
+    min-height: 100vh;
+    text-align: center;
+    padding-top: 100px;
+  
+    p {
+      font-size: 18px;
+    }
+  }
+  

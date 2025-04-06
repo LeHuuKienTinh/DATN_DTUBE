@@ -3,6 +3,7 @@ import './Home.scss'
 import Menu from './Menu';
 import CardFilm from '../../components/user/home/Cardfilm';
 import Banner from '../../components/user/home/Banner';
+import FooterHomePage from '../../components/home/HomePage/FooterHomePage/FooterHomePage';
 const Home = () => {
  
 
@@ -13,6 +14,7 @@ const Home = () => {
       <CardFilm/>
       <Banner/>
       <h1></h1>
+      <FooterHomePage/>
     </div>
   );
 };
