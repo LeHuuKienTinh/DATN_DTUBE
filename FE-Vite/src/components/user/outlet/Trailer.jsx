@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axiosInstance from '../../../service/axiosInstance';
 import Menu from '../../../view/user/Menu';
 import './Trailler.scss';
+import { useAuth } from '../../../contexts/AuthProvider'; 
 
 const Trailer = () => {
   const { movieName } = useParams();
@@ -10,12 +11,62 @@ const Trailer = () => {
   const [episodes, setEpisodes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [trailerUrl, setTrailerUrl] = useState('');
+  const { user } = useAuth(); // Lấy thông tin user từ context
 
-  // Hàm để chuyển đổi thời gian từ giây sang phút
+  // Hàm chuyển đổi thời gian từ giây sang phút
   const formatDuration = (durationInSeconds) => {
     const minutes = Math.floor(durationInSeconds / 60);
     const seconds = durationInSeconds % 60;
     return `${minutes} phút ${seconds} giây`;
+  };
+
+  // Hàm xử lý khi xem tập phim
+  const handleEpisodeWatch = async (e, episode) => {
+    e.preventDefault();
+    
+    if (!user) {
+      alert('Vui lòng đăng nhập để xem phim');
+      return;
+    }
+  
+    try {
+      // Tạo timestamp hiện tại theo định dạng "YYYY-MM-DD HH:mm:ss"
+      const now = new Date();
+      const watchedAt = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+  
+      // Gửi request với các trường theo mẫu API:
+      // {
+      //   "user_id": 1,
+      //   "movie_slug": "avengers-endgame",
+      //   "name": "Avengers: Endgame",
+      //   "episode_name": "Tập 1: Cuộc chiến khốc liệt",
+      //   "episode_slug": "tap-1-cuoc-chien-khoc-liet",
+      //   "watched_at": "2025-04-07 10:30:00"
+      // }
+      const response = await axiosInstance.post('/api/historyfilm/history/', {
+        user_id: user.id,
+        movie_slug: movieName,
+        name: movie.name,
+        episode_name: episode.name,
+        episode_slug: episode.slug || null,
+        watched_at: watchedAt
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      if (response.data && response.data.success) {
+        console.log('Lưu lịch sử thành công:', response.data);
+      } else {
+        console.error('Lỗi từ server:', response.data.error);
+      }
+      // Sau khi lưu lịch sử (dù thành công hay không) mở link tập phim trong tab mới
+      window.open(episode.link_embed, '_blank');
+    } catch (error) {
+      console.error('Lỗi khi lưu lịch sử xem phim:', error.response ? error.response.data : error.message);
+      window.open(episode.link_embed, '_blank');
+    }
   };
 
   useEffect(() => {
@@ -93,7 +144,7 @@ const Trailer = () => {
               alt={`${ep.name}`}
             />
             <div className="episode-info">
-              <h3> {index + 1}: {ep.name}</h3>
+              <h3>{index + 1}: {ep.name}</h3>
               <p>{movie.origin_name} - {ep.name}</p>
               {ep.duration && (
                 <p>Thời gian: {formatDuration(ep.duration)}</p>
@@ -102,6 +153,7 @@ const Trailer = () => {
                 href={ep.link_embed}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => handleEpisodeWatch(e, ep)}
               >
                 Xem
               </a>
